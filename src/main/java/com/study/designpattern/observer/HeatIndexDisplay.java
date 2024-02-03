@@ -13,10 +13,23 @@ public class HeatIndexDisplay implements Observer, Display {
 
     @Override
     public void update(float temp, float humidity, float pressure) {
-        float t = temp;
-        float rh = humidity;
+        heatIndex = getHeatIndex(temp, humidity);
+        display();
+    }
 
-        heatIndex = (float)
+    @Override
+    public void update() {
+        heatIndex = getHeatIndex(weatherData.getTemperature(), weatherData.getHumidity());
+        display();
+    }
+
+    @Override
+    public void display() {
+        System.out.println("Heat index is " + heatIndex);
+    }
+
+    private float getHeatIndex(float t, float rh) {
+        return (float)
                 (
                         (16.923 + (0.185212 * t)) +
                                 (5.37941 * rh) -
@@ -33,11 +46,5 @@ public class HeatIndexDisplay implements Observer, Display {
                                 (0.0000000218429 * (t * t * t * rh * rh)) +
                                 (0.000000000843296 * (t * t * rh * rh * rh)) -
                                 (0.0000000000481975 * (t * t * t * rh * rh * rh)));
-        display();
-    }
-
-    @Override
-    public void display() {
-        System.out.println("Heat index is " + heatIndex);
     }
 }

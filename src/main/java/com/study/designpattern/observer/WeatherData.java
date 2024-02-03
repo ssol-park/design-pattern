@@ -1,8 +1,13 @@
 package com.study.designpattern.observer;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
 public class WeatherData implements Subject {
     private List<Observer> observers;
     private float temperature;
@@ -25,7 +30,7 @@ public class WeatherData implements Subject {
 
     @Override
     public void notifyObservers() {
-        this.observers.forEach(observer -> observer.update(temperature, humidity, pressure));
+        this.observers.forEach(observer -> observer.update());
     }
 
     public void measurementsChanged() {

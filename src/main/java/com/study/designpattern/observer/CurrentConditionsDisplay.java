@@ -19,6 +19,13 @@ public class CurrentConditionsDisplay implements Observer, Display {
     }
 
     @Override
+    public void update() {
+        this.temperature = weatherData.getTemperature();
+        this.humidity = weatherData.getHumidity();
+        display();
+    }
+
+    @Override
     public void display() {
         System.out.println("현재 상태: 온도 " + temperature + ", 습도 " + humidity + "%");
     }
