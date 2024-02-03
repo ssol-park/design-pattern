@@ -1,6 +1,6 @@
 package com.study.designpattern.strategy.behaivor;
 
-public class fly implements FlyBehavior {
+public class Fly implements FlyBehavior {
     @Override
     public void fly() {
         System.out.println("Fly!!");
